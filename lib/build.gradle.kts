@@ -1,6 +1,6 @@
 plugins {
-    id("org.jetbrains.kotlin.jvm") version "1.5.31"
     `java-library`
+    kotlin
 }
 
 val apply = providers.gradleProperty("apply")

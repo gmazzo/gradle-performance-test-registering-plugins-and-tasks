@@ -6,6 +6,10 @@ repositories {
     mavenCentral()
 }
 
+dependencies {
+    implementation(embeddedKotlin("gradle-plugin"))
+}
+
 val amountOfPlugins = providers.gradleProperty("amountPlugins")
     .map(String::toInt)
     .getOrElse(100)
@@ -23,6 +27,7 @@ gradlePlugin {
 
 val classesDir = layout.buildDirectory.dir("generated/classes")
 val generatePlugins = tasks.register("generateTestPlugins") {
+    inputs.property("plugins", gradlePlugin.plugins)
     outputs.dir(classesDir)
 
     doLast {
